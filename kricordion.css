@@ -1,0 +1,82 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*  ---------------  COMANDO DO TEXTO GERAL DO DESTAQUE - CABE�ALHO-TITULO  --------------- */
+.acr_feature_excerpt {
+	background-color:#000000; /* COR DA TARJA DO QUADRO */
+
+/* -- FONTE DO TITULO DO DESTAQUE COM DESCRICAO -- */
+	color:#ff0000;
+	bottom:0;
+	display:inline;
+	font-size: 10pt;
+	font-weight: bold;
+	display:block;
+	opacity: 0.9;
+/* TAMANHO DA TARJA DO DESTAQUE */
+	padding: 5px 20px;
+	position: absolute;
+	width: 900px;
+	height: 70px;
+}
+
+/*  ---------------  COMANDO DO TEXTO DE DESCRICAO DA MATERIA  --------------- */
+.acr_feature_excerpt p {
+    color: #00FF00;
+    font-family: verdana;
+    font-size: 8pt;
+    font-weight: normal;
+    margin: 0;
+}
+/*  ---------------  REMOVE OS SUBLINHADOS DE TODOS OS LINKS  --------------- */	
+A:link {text-decoration: none}
+A:visited {text-decoration: none}
+A:active {text-decoration: none}
+A:hover {text-decoration: none}
+
+.acr_image_desc {
+    font-family: verdana;
+    font-size: 10pt;
+    margin: 0;
+}
+
+/*  ---------------  PROPRIEDADE DAS IMAGENS - TAMANHO/ BORDAS - TITULO DA DESCRICAO  --------------- */
+.acr_accordion, .acr_accordion img, .acr_fadeout, .acr_accordion > div{
+/* BORDAS DAS IMAGENS NOS QUADROS */
+	border-color:#000000;
+	border-width:0px;
+	border-bottom-width:0px;
+	border-top-width:0px;
+	border-style:solid;
+/* PROPRIEDADES DA FONTE DA DESCRICAO - TEXTO DA MATERIA */
+    font-family: verdana;
+    font-size: 10pt;
+/* TAMANHO DA IMAGEM */
+    height: 350px;
+    width: 900px;
+}
+
+/*  ---------------  TAMANHO TOTAL DO GADGET  --------------- */
+.acr_accordion {
+    width: 1280px;
+}
+
+.acr_accordion {
+    overflow: hidden;
+    position:absolute;
+}
+
+/* ------------ DISPOSICAO DAS IMAGENS NO GADGET ---------- */
+.acr_accordion > div{
+    position:absolute;
+}
+
+/*  ---------------  COMANDO DO TITULO DO DESTAQUE SOZINHO --------------- */
+.acr_heading_clone {
+	color: #cc0000;
+	display:inline;
+	font-family: verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	left: 20px;
+	text-align:center;
+}

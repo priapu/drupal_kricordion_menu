@@ -1,0 +1,67 @@
+<?php
+function kricordion_print_menu($menu = 'main-menu') {
+
+  // First, render the parent menu
+  $parent_menu = menu_navigation_links($menu);
+  $parent_menu_rendered = theme('links__menu_main_menu', array('links' => $parent_menu, 'attributes' => array('class' => array($menu))));
+  $html  = $parent_menu_rendered;
+  $html .= '<div class="acr_accordion"><div class="acr_group_accordion"><div class="acr_group_accordion_entries">';
+
+  $menu_items = menu_tree_all_data($menu);
+  
+  // Then, go through all the children links and print them.
+  foreach($menu_items as $key=>$child){
+    
+    // Geting the parent menu image 
+    $key = substr($key, -3);
+    $result = db_query("SELECT mlid, options FROM {menu_links} WHERE mlid = :mlid", array(':mlid' => $key));
+    $record = $result->fetchObject();
+    $options = unserialize($record->options);
+    
+    $menu_image = '';
+    if (array_key_exists('menu_icon', $options)) {
+      $image = file_create_url($options['menu_icon']['path']);
+      $hero_image = array(
+        'style_name' => $options['menu_icon']['image_style'],
+        'path' => $options['menu_icon']['path'],
+        'width' => '',
+        'height' => '',
+        'alt' => '',
+        'title' => '',
+        );
+      $menu_image = '<div class="menu-image">'.theme('image_style',$hero_image).'</div>';
+    }
+    
+    $class = 'menu-child-'.$child['link']['mlid'];
+    
+    $html .= '<div class="acr_group_entry '.$class.'"><div class="acr_image">';
+    $html .= $menu_image;
+    $html .= '<p class="acr_image_desc">';
+    $html .= drupal_render(menu_tree_output($child['below']));
+    $html .= '</p>';
+    $html .= '</div></div>';
+  }
+  $html .= '</div></div></div>';
+  return $html;
+}
+
+function kricordion_block_info() {
+  $blocks['kricordion'] = array(
+    'info' => t('Kricordion Menu'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+function kricordion_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'kricordion':
+      $block['subject'] = t('Kricordion Menu');
+      $block['content'] = kricordion_print_menu();
+      break;
+
+  }
+  return $block;
+}
